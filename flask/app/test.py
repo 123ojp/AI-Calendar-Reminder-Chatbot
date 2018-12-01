@@ -54,3 +54,41 @@ def routine():
 
 t = threading.Thread(target = routine)
 t.start()
+# {
+#     "responseId": "wwww1",
+#     "queryResult": {
+#         "queryText": "\u7684",
+#         "action": "input.unknown",
+#         "parameters": {},
+#         "allRequiredParamsPresent": true,
+#         "intent": {
+#             "name": "wwwwa",
+#             "displayName": "Default Fallback Intent",
+#             "isFallback": true
+#         },
+#         "intentDetectionConfidence": 1.0,
+#         "languageCode": "zh-cn"
+#     },
+#     "originalDetectIntentRequest": {
+#         "source": "line",
+#         "payload": {
+#             "data": {
+#                 "replyToken": "wwww",
+#                 "source": {
+#                     "groupId": "www",
+#                     "type": "group",
+#                     "userId": "www"
+#                 },
+#                 "message": {
+#                     "text": "\u7684",
+#                     "id": "8943853922878",
+#                     "type": "text"
+#                 },
+#                 "type": "message",
+#                 "timestamp": 1543676963187.0
+#             },
+#             "source": "line"
+#         }
+#     },
+#     "session": "pwwww-473cdc82c02c"
+# }

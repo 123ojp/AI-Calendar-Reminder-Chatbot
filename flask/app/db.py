@@ -46,7 +46,7 @@ class Db():
                         'lineid':lineid
                         }
         self.inparttable.insert_one(insert_data)
-    def insertAct(self,LID,Ltype,name,date,time,place,alert_time,alert_stage):#LID = 群組ID或個人ID,Ltype = 個人或群組
+    def insertAct(self,LID,Ltype,name,date,time,place,alert_time):#LID = 群組ID或個人ID,Ltype = 個人或群組
         insert_data = {'actName':name,
                         'actDate':date,
                         'actTime':time,
@@ -72,3 +72,18 @@ class Db():
         getact = { "_id": id }
         newact = { "$set": { "actAlertStage": 1 } }
         self.acttable.update_one(getact, newact)
+    def searchAct(self,id): #請給提醒ID
+        find_data =  {
+                        'lineid': id,
+                         }
+        list_act = self.acttable.find(find_data)
+        return list_act #用for 去拿資料
+    def delAct(self,id):
+        find_data =  {
+                        '_id': id,
+                         }
+        self.acttable.delete_one(find_data)
+        find_data =  {
+                        'actID': id,
+                         }
+        self.inparttable.delete_one(find_data)

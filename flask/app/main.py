@@ -2,7 +2,7 @@
 ##### import urllib
 import json
 import os
-import db
+import db,fun
 from flask import Flask
 from flask import request
 from flask import make_response
@@ -45,7 +45,8 @@ def routine():
 t = threading.Thread(target = routine)
 t.start()
 # 掃db finish
-
+# 拿
+funt = fun.Fun()
 
 # port
 port = 8000
@@ -69,13 +70,22 @@ def webhook():
     org_req = req.get("originalDetectIntentRequest")
     if not ( "source" in org_req and org_req.get("source") == "line"):
         return "",500
-    line(org_req.get('payload'))
-    if mode == 'LibraryAct':
-        respone_text =  get_act()
-        print ("辨別為圖書館活動")
-    elif mode == "LibraryBook":
-        respone_text = get_book(parameters.get("Bookname"))
-        print ("辨別為圖書搜尋→",parameters.get("Bookname"))
+    room_type = org_req.get('payload').get('data').get('source').get('type')
+    room_type_n = -1
+    if room_type == "group":
+        room_type_n = 1
+    if room_type == "user":
+        room_type_n = 0
+    LID = funt.getLine(org_req)
+#    line(org_req.get('payload'))
+    if mode == 'createActEasy':
+        act,date,time,place,unix_time = funt.getActItem(parameters)
+        mongodb.insertAct(LID,room_type_n,act,date,time,place,unix_time)
+        respone_text =  "建立成功\n"+"活動："+act+"\n"+date+" "+time+place
+        print ("辨別為一般建立")
+    # elif mode == "LibraryBook":
+    #     respone_text = get_book(parameters.get("Bookname"))
+    #     print ("辨別為圖書搜尋→",parameters.get("Bookname"))
     print ("解果:")
 
     #print("Response:")
@@ -83,8 +93,6 @@ def webhook():
     #回傳
     res = {
         "fulfillmentText": respone_text,
-        #"payload": {},
-        #"outputContexts": [],
         "source": "agent"
         }
 
