@@ -79,7 +79,7 @@ def webhook():
     LID = funt.getLine(org_req)
 #    line(org_req.get('payload'))
     if mode == 'createActEasy':
-        act,date,time,place,unix_time = funt.getActItem(parameters)
+        act,date,time,place,unix_time = funt.getActItem(parameters,org_req)
         mongodb.insertAct(LID,room_type_n,act,date,time,place,unix_time)
         respone_text =  "建立成功\n"+"活動："+act+"\n"+date+" "+time+place
         print ("辨別為一般建立")
