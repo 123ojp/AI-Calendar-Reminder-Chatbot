@@ -6,7 +6,7 @@ class Fun():
         time = parameters.get('time')
         place = parameters.get('place')
         date = parameters.get('date')
-        act = parameters.get('act')
+        act = str(parameters.get('act'))
         time_re = re.search('([0-9]{1,2})[^\d]*([0-9]{1,2})',time)
         hour = int(time_re.group(1))
         min = int(time_re.group(2))
