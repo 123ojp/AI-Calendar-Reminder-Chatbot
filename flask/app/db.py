@@ -2,7 +2,7 @@ import pymongo
 import time
 class Db():
     def __init__(self):
-        self.dbclient = pymongo.MongoClient('mongodb://localhost:27017/')['bigdata']
+        self.dbclient = pymongo.MongoClient('mongodb://db:27017/')['bigdata']
         self.usertable = self.dbclient['User'] #使用者table
         self.grouptable = self.dbclient['Group'] #群組table
         self.acttable = self.dbclient['Act'] #活動資料table
