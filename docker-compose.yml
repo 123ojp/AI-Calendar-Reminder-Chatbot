@@ -1,0 +1,29 @@
+version: "2"
+services:
+    web:
+        build: ./flask
+        ports:
+            - "10105:80"
+        volumes:
+            - ./flask/app:/app
+     db:
+        image: mongo:3
+     db_manger:
+        build: ./adminMongo
+        links:
+                - db
+        environment:
+                - DB_HOST=db
+        ports:
+                - "127.0.0.1:60005:1234"
+networks:
+    default:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet:  172.27.1.0/24
+#  volumes:
+#   - ./db/dbms:/data/dbms
+#  ports:
+#   - "60006:7474"
