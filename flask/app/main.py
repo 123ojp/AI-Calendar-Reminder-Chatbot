@@ -109,7 +109,7 @@ def webhook():
             if mode == "makeActPlace":
                 mongodb.setTmpActPlace(LID,parameters.get('place'))
             tmpAct = mongodb.getTmpAct(LID)
-            respone_text = "活動\n 名稱：{}\n 日期：{}\n 時間：{}\n 地點：{}".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
+            respone_text = "活動建立中\n名稱：{}\n日期：{}\n時間：{}\n地點：{}".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
             if mongodb.readyTmpAct(LID):
                 respone_text += "\n是否確定建立活動?"
     if mode == "tmpActGo":
@@ -126,7 +126,7 @@ def webhook():
             mongodb.setTmpActAlert(LID,unix_time)
             mongodb.insertAct(LID,room_type_n,tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'],unix_time)
             mongodb.delTmpAct(LID)
-            respone_text = "活動\n 名稱：{}\n 日期：{}\n 時間：{}\n 地點：{}\n建立成功".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
+            respone_text = "建立成功\n名稱：{}\n日期：{}\n時間：{}\n地點：{}".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
         else :
             return ""
 
