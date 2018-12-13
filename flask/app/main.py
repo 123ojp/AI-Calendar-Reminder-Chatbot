@@ -84,7 +84,7 @@ def webhook():
         respone_text =  "建立成功\n"+"活動："+act+"\n"+date+" "+time+place
         print ("辨別為一般建立")
     if mode.find('make') == 0:
-        if (! mongodb.isSettingTmpAct(LID)):
+        if not(mongodb.isSettingTmpAct(LID)):
             mongodb.setTmpActSate(LID)
         if mode == "makeActName":
             mongodb.setTmpActName(LID,parameters.get('name'))
