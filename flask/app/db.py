@@ -148,3 +148,8 @@ class Db():
     def getTmpAct(self,line_id):
         getact = { "lineid": line_id }
         return self.tmpacttable.find_one(getact)
+    def delTmpAct(self,id):
+        find_data =  {
+                        'lineid': id,
+                         }
+        self.tmpacttable.delete_one(find_data)

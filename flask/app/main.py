@@ -124,6 +124,8 @@ def webhook():
             day = int(date_re.group(3))
             unix_time = datetime.datetime(year,month,day,hour,min).timestamp()
             mongodb.setTmpActAlert(LID,unix_time)
+            mongodb.insertAct(LID,room_type_n,tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
+            mongodb.delTmpAct(LID)
             respone_text = "活動\n 名稱：{}\n 日期：{}\n 時間：{}\n 地點：{}\n建立成功".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
         else :
             return ""
