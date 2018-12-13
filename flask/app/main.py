@@ -102,7 +102,7 @@ def webhook():
             hour = int(time_re.group(1))
             min = int(time_re.group(2))
             time = str(hour)+":"+str(min)
-            mongodb.setTmpActTime(NID,time)
+            mongodb.setTmpActTime(LID,time)
         if mode == "makeActPlace":
             mongodb.setTmpActPlace(LID,parameters.get('place'))
         tmpAct = mongodb.getTmpAct(LID)
