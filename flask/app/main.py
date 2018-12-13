@@ -105,13 +105,13 @@ def webhook():
             mongodb.setTmpActTime(time)
         if mode == "makeActPlace":
             mongodb.setTmpActPlace(LID,parameters.get('place'))
-        tmpAct = mongodb.getTmpActAlert(LID)
+        tmpAct = mongodb.getTmpAct(LID)
         respone_text = "活動\n 名稱：{}\n 日期：{}\n 時間：{}\n 地點：{}".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
         if mongodb.readyTmpAct(LID):
             respone_text += "\n是否確定建立活動?"
     if mode == "tmpActGo":
         if mongodb.readyTmpAct(LID):
-            tmpAct = mongodb.getTmpActAlert(LID)
+            tmpAct = mongodb.getTmpAct(LID)
             time_re = re.search('([0-9]{1,2}):([0-9]{1,2})',tmpAct['actTime'])
             hour = int(time_re.group(1))
             min = int(time_re.group(2))

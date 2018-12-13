@@ -145,6 +145,6 @@ class Db():
             return True
         else:
             return False
-    def getTmpActAlert(self,line_id):
+    def getTmpAct(self,line_id):
         getact = { "lineid": line_id }
         return self.tmpacttable.find_one(getact)
