@@ -118,25 +118,25 @@ class Db():
         getact = { "lineid": line_id }
         find_data = self.tmpacttable.find_one(getact)
         Scode = find_data['Scode'] | 2**2
-        newact = { "$set": { "actDate": date } }
+        newact = { "$set": { "actDate": date, "Scode":Scode } }
         self.tmpacttable.update_one(getact, newact)
     def setTmpActTime(self,line_id,time):
         getact = { "lineid": line_id }
         find_data = self.tmpacttable.find_one(getact)
         Scode = find_data['Scode'] | 2**3
-        newact = { "$set": { "actTime": time } }
+        newact = { "$set": { "actTime": time, "Scode":Scode } }
         self.tmpacttable.update_one(getact, newact)
     def setTmpActPlace(self,line_id,place):
         getact = { "lineid": line_id }
         find_data = self.tmpacttable.find_one(getact)
         Scode = find_data['Scode'] | 2**4
-        newact = { "$set": { "actPlace": place } }
+        newact = { "$set": { "actPlace": place, "Scode":Scode } }
         self.tmpacttable.update_one(getact, newact)
     def setTmpActAlert(self,line_id,alert):
         getact = { "lineid": line_id }
         find_data = self.tmpacttable.find_one(getact)
         Scode = find_data['Scode'] | 2**5
-        newact = { "$set": { "actAlert": alert } }
+        newact = { "$set": { "actAlert": alert, "Scode":Scode } }
         self.tmpacttable.update_one(getact, newact)
     def readyTmpAct(self,line_id):
         getact = { "lineid": line_id }

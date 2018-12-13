@@ -86,29 +86,30 @@ def webhook():
     if mode.find('make') == 0:
         if not(mongodb.isSettingTmpAct(LID)):
             mongodb.setTmpActSate(LID)
-        if mode == "makeActName":
-            mongodb.setTmpActName(LID,parameters.get('name'))
-        if mode == "makeActDate":
-            date = parameters.get('date')
-            date_re = re.search('([0-9]{4})-([0-9]{2})-([0-9]{2})',date)
-            year = int(date_re.group(1))
-            month = int(date_re.group(2))
-            day = int(date_re.group(3))
-            date = str(year)+"年"+str(month)+"月"+str(day)+"日"
-            mongodb.setTmpActDate(LID,date)
-        if mode == "makeActTime":
-            time = parameters.get('time')
-            time_re = re.search('([0-9]{1,2})[^\d]+([0-9]{1,2})',time)
-            hour = int(time_re.group(1))
-            min = int(time_re.group(2))
-            time = str(hour)+":"+str(min)
-            mongodb.setTmpActTime(LID,time)
-        if mode == "makeActPlace":
-            mongodb.setTmpActPlace(LID,parameters.get('place'))
-        tmpAct = mongodb.getTmpAct(LID)
-        respone_text = "活動\n 名稱：{}\n 日期：{}\n 時間：{}\n 地點：{}".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
-        if mongodb.readyTmpAct(LID):
-            respone_text += "\n是否確定建立活動?"
+            if mode == "makeActName":
+                mongodb.setTmpActName(LID,parameters.get('name'))
+        else :
+            if mode == "makeActDate":
+                date = parameters.get('date')
+                date_re = re.search('([0-9]{4})-([0-9]{2})-([0-9]{2})',date)
+                year = int(date_re.group(1))
+                month = int(date_re.group(2))
+                day = int(date_re.group(3))
+                date = str(year)+"年"+str(month)+"月"+str(day)+"日"
+                mongodb.setTmpActDate(LID,date)
+            if mode == "makeActTime":
+                time = parameters.get('time')
+                time_re = re.search('([0-9]{1,2})[^\d]+([0-9]{1,2})',time)
+                hour = int(time_re.group(1))
+                min = int(time_re.group(2))
+                time = str(hour)+":"+str(min)
+                mongodb.setTmpActTime(LID,time)
+            if mode == "makeActPlace":
+                mongodb.setTmpActPlace(LID,parameters.get('place'))
+            tmpAct = mongodb.getTmpAct(LID)
+            respone_text = "活動\n 名稱：{}\n 日期：{}\n 時間：{}\n 地點：{}".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
+            if mongodb.readyTmpAct(LID):
+                respone_text += "\n是否確定建立活動?"
     if mode == "tmpActGo":
         if mongodb.readyTmpAct(LID):
             tmpAct = mongodb.getTmpAct(LID)
