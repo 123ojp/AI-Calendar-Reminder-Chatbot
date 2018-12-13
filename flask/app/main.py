@@ -86,7 +86,7 @@ def webhook():
     if mode.find('make') == 0:
         if not(mongodb.isSettingTmpAct(LID)):
             mongodb.setTmpActSate(LID)
-            if mode == "makeActName" or mode = "makeActNameChange":
+            if mode == "makeActName" or mode == "makeActNameChange":
                 mongodb.setTmpActName(LID,parameters.get('name'))
         else :
             if mode == "makeActNameChange" or mode == "makeActName":
