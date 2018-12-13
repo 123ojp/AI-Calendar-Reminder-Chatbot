@@ -141,7 +141,7 @@ class Db():
     def readyTmpAct(self,line_id):
         getact = { "lineid": line_id }
         find_data = self.tmpacttable.find_one(getact)
-        if find_data['Scode'] == 63:
+        if find_data['Scode'] == 31:
             return True
         else:
             return False
