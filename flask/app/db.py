@@ -87,3 +87,64 @@ class Db():
                         'actID': id,
                          }
         self.inparttable.delete_one(find_data)
+    def isSettingTmpAct(self,id):
+        search_data = {
+                    'lineid':id,
+                    }
+        find_data = self.tmpacttable.find_one(search_data)
+        if find_data :
+           return True
+        else :
+           return False
+    def setTmpActSate(self,id):
+       insert_data = {
+                       'actName':"NULL",
+                       'actDate':"NULL",
+                       'actTime':"NULL",
+                       'actPlace':"NULL",
+                       'actAlert':0,
+                       'actAlertStage':0,
+                       'Scode':1,
+                       'lineid':id,
+                       }
+       self.tmpacttable.insert_one(insert_data)
+    def setTmpActName(self,line_id,name):
+        getact = { "lineid": line_id }
+        find_data = self.tmpacttable.find_one(getact)
+        Scode = find_data['Scode'] | 2**1
+        newact = { "$set": { "actName": name, "Scode":Scode } }
+        self.tmpacttable.update_one(getact, newact)
+    def setTmpActDate(self,line_id,date):
+        getact = { "lineid": line_id }
+        find_data = self.tmpacttable.find_one(getact)
+        Scode = find_data['Scode'] | 2**2
+        newact = { "$set": { "actDate": date } }
+        self.tmpacttable.update_one(getact, newact)
+    def setTmpActTime(self,line_id,time):
+        getact = { "lineid": line_id }
+        find_data = self.tmpacttable.find_one(getact)
+        Scode = find_data['Scode'] | 2**3
+        newact = { "$set": { "actTime": time } }
+        self.tmpacttable.update_one(getact, newact)
+    def setTmpActPlace(self,line_id,place):
+        getact = { "lineid": line_id }
+        find_data = self.tmpacttable.find_one(getact)
+        Scode = find_data['Scode'] | 2**4
+        newact = { "$set": { "actPlace": place } }
+        self.tmpacttable.update_one(getact, newact)
+    def setTmpActAlert(self,line_id,alert):
+        getact = { "lineid": line_id }
+        find_data = self.tmpacttable.find_one(getact)
+        Scode = find_data['Scode'] | 2**5
+        newact = { "$set": { "actAlert": alert } }
+        self.tmpacttable.update_one(getact, newact)
+    def readyTmpAct(self,line_id):
+        getact = { "lineid": line_id }
+        find_data = self.tmpacttable.find_one(getact)
+        if find_data['Scode'] == 63:
+            return True
+        else:
+            return False
+    def getTmpActAlert(self,line_id):
+        getact = { "lineid": line_id }
+        return self.tmpacttable.find_one(getact)

@@ -83,6 +83,49 @@ def webhook():
         mongodb.insertAct(LID,room_type_n,act,date,time,place,unix_time)
         respone_text =  "建立成功\n"+"活動："+act+"\n"+date+" "+time+place
         print ("辨別為一般建立")
+    if mode.find('make') == 0:
+        if (! mongodb.isSettingTmpAct(LID)):
+            mongodb.setTmpActSate(LID)
+        if mode == "makeActName":
+            mongodb.setTmpActName(LID,parameters.get('name'))
+        if mode == "makeActDate":
+            date = parameters.get('date')
+            date_re = re.search('([0-9]{4})-([0-9]{2})-([0-9]{2})',date)
+            year = int(date_re.group(1))
+            month = int(date_re.group(2))
+            day = int(date_re.group(3))
+            date = str(year)+"年"+str(month)+"月"+str(day)+"日"
+            mongodb.setTmpActDate(date)
+        if mode == "makeActTime":
+            time = parameters.get('time')
+            time_re = re.search('([0-9]{1,2})[^\d]+([0-9]{1,2})',time)
+            hour = int(time_re.group(1))
+            min = int(time_re.group(2))
+            time = str(hour)+":"+str(min)
+            mongodb.setTmpActTime(time)
+        if mode == "makeActPlace":
+            mongodb.setTmpActPlace(LID,parameters.get('place'))
+        tmpAct = mongodb.getTmpActAlert(LID)
+        respone_text = "活動\n 名稱：{}\n 日期：{}\n 時間：{}\n 地點：{}".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
+        if mongodb.readyTmpAct(LID):
+            respone_text += "\n是否確定建立活動?"
+    if mode == "tmpActGo":
+        if mongodb.readyTmpAct(LID):
+            tmpAct = mongodb.getTmpActAlert(LID)
+            time_re = re.search('([0-9]{1,2}):([0-9]{1,2})',tmpAct['actTime'])
+            hour = int(time_re.group(1))
+            min = int(time_re.group(2))
+            date_re = re.search('([0-9]{4})年([0-9]{2})月([0-9]{2})',tmpAct['actDate'])
+            year = int(date_re.group(1))
+            month = int(date_re.group(2))
+            day = int(date_re.group(3))
+            unix_time = datetime.datetime(year,month,day,hour,min).timestamp()
+            mongodb.setTmpActAlert(unix_time)
+            respone_text = "活動\n 名稱：{}\n 日期：{}\n 時間：{}\n 地點：{}\n建立成功".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
+        else :
+            return
+
+    #
     # elif mode == "LibraryBook":
     #     respone_text = get_book(parameters.get("Bookname"))
     #     print ("辨別為圖書搜尋→",parameters.get("Bookname"))
