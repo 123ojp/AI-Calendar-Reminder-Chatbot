@@ -8,7 +8,7 @@ class Fun():
             place = parameters.get('place')
             date = parameters.get('date')
             act = str(parameters.get('act'))
-            time_re = re.search('([0-9]{1,2})[^\d]*([0-9]{1,2})',time)
+            time_re = re.search('([0-9]{1,2})[^\d]+([0-9]{1,2})',time)
             hour = int(time_re.group(1))
             min = int(time_re.group(2))
             date_re = re.search('([0-9]{4})-([0-9]{2})-([0-9]{2})',date)
@@ -22,10 +22,10 @@ class Fun():
             date = text[2]
             time = text[3]
             place = text[4]
-            time_re = re.search('([0-9]{1,2})[^\d]*([0-9]{1,2})',time)
+            time_re = re.search('([0-9]{1,2})[^\d]([0-9]{1,2})',time)
             hour = int(time_re.group(1))
             min = int(time_re.group(2))
-            date_re = re.search('([0-9]{1,2})[^\d]*([0-9]{1,2})',date)
+            date_re = re.search('([0-9]{1,2})[^\d]([0-9]{1,2})',date)
             year = 2018
             month = int(date_re.group(1))
             day = int(date_re.group(2))

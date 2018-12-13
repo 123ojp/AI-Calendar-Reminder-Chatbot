@@ -61,7 +61,7 @@ def hello():
 def webhook():
     req = request.get_json(silent=True, force=True)
     #print("Request:")
-    print(json.dumps(req, indent=4))
+    print(req)
     result = req.get("queryResult")
     usersay=result.get("queryText")
     intent = result.get("intent")
