@@ -12,7 +12,7 @@ import threading,time,requests
 ## 主動發line
 def sendLine(user, text):
     TOKEN = "oVbjOkF5o5/nAz2dR2kUiVCldSEoPrcU+ZMUGfEM78BOkb7B6/Oww3obdTV/OelA1c7DTcHYzrnl964n1gjrTRIxhgykWRE5Frwfn7rk2Lb//Zd+dBUiVzIn51dcQD6J+uGRZ0IX4WQN47YxUMF5AAdB04t89/1O/w1cDnyilFU="
-    LINE_API = 'https://api.line.me/v2/bot/message/multicast'
+    LINE_API = 'https://api.line.me/v2/bot/message/push'
     CHANNEL_SERECT ='Bearer {"'+TOKEN+'"}'
     headers = {
         'Content-Type': 'application/json; charset=UTF-8',
@@ -20,7 +20,7 @@ def sendLine(user, text):
     }
 
     data = json.dumps({
-        "to": [user],
+        "to": user,
         "messages":[
         {
             "type":"text",
