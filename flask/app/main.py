@@ -89,6 +89,8 @@ def webhook():
             if mode == "makeActName":
                 mongodb.setTmpActName(LID,parameters.get('name'))
         else :
+            if mode == "makeActNameChange":
+                mongodb.setTmpActName(LID,parameters.get('name'))
             if mode == "makeActDate":
                 date = parameters.get('date')
                 date_re = re.search('([0-9]{4})-([0-9]{2})-([0-9]{2})',date)
