@@ -95,14 +95,14 @@ def webhook():
             month = int(date_re.group(2))
             day = int(date_re.group(3))
             date = str(year)+"年"+str(month)+"月"+str(day)+"日"
-            mongodb.setTmpActDate(date)
+            mongodb.setTmpActDate(LID,date)
         if mode == "makeActTime":
             time = parameters.get('time')
             time_re = re.search('([0-9]{1,2})[^\d]+([0-9]{1,2})',time)
             hour = int(time_re.group(1))
             min = int(time_re.group(2))
             time = str(hour)+":"+str(min)
-            mongodb.setTmpActTime(time)
+            mongodb.setTmpActTime(NID,time)
         if mode == "makeActPlace":
             mongodb.setTmpActPlace(LID,parameters.get('place'))
         tmpAct = mongodb.getTmpAct(LID)
@@ -120,10 +120,10 @@ def webhook():
             month = int(date_re.group(2))
             day = int(date_re.group(3))
             unix_time = datetime.datetime(year,month,day,hour,min).timestamp()
-            mongodb.setTmpActAlert(unix_time)
+            mongodb.setTmpActAlert(LID,unix_time)
             respone_text = "活動\n 名稱：{}\n 日期：{}\n 時間：{}\n 地點：{}\n建立成功".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
         else :
-            return
+            return ""
 
     #
     # elif mode == "LibraryBook":
