@@ -6,7 +6,7 @@ import db,fun
 from flask import Flask
 from flask import request
 from flask import make_response
-import threading,time,requests,re
+import threading,time,requests,re,datetime
 
 
 ## 主動發line
