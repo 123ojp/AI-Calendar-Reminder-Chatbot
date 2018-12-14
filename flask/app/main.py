@@ -101,6 +101,8 @@ def webhook():
                 mongodb.setTmpActDate(LID,date)
             if mode == "makeActTime":
                 time = parameters.get('time')
+                if time == "":
+                    time = usersay
                 time_re = re.search('([0-9]{1,2})[^\d]+([0-9]{1,2})',time)
                 hour = int(time_re.group(1))
                 min = int(time_re.group(2))
