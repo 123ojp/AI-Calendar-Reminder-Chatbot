@@ -139,20 +139,18 @@ def webhook():
             return ""
     if mode == 'searchAct': #搜尋活動
         date,search_type = funt.getActDate(parameters,org_req)
+        respone_text = '搜尋結果為\n'
         if(search_type == 0):#搜全部活動
             search_act = searchAct(LID)
-            respone_text = '搜尋結果為\n'
             for tmpAct in search_act:
                 tmptext = "活動：{}\n日期：{} 時間：{} 地點：{}".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
                 respone_text = respone_text + tmptext
         else if(search_type == 1): #搜尋日期的活動
-            respone_text = '搜尋結果為\n'
             search_act = searchActDate(LID,date)
             for tmpAct in search_act:
                 tmptext = "活動：{}\n日期：{} 時間：{} 地點：{}".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
                 respone_text = respone_text + tmptext
         else if(search_type == 2): #搜尋月的活動
-            respone_text = '搜尋結果為\n'
             search_act = searchActMonth(LID,date)
             for tmpAct in search_act:
                 tmptext = "活動：{}\n日期：{} 時間：{} 地點：{}".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
