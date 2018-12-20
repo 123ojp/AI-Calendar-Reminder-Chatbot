@@ -169,5 +169,5 @@ class Db():
         list temp = []
         for tmpAct in list_act:
             if(date in tmpAct['actDate']):
-                temp = temp + tmpAct
+                temp.append(tmpAct)
         return temp #用for 去拿資料
