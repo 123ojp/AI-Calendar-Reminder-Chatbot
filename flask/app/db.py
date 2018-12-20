@@ -153,3 +153,21 @@ class Db():
                         'lineid': id,
                          }
         self.tmpacttable.delete_one(find_data)
+        
+    def searchActDate(self,id,date): #請給提醒ID
+        find_data =  {
+                        'lineid': id,
+                        'actDate':date,
+                         }
+        list_act = self.acttable.find(find_data)
+        return list_act #用for 去拿資料
+    def searchActMonth(self,id,date): #請給提醒ID
+        find_data =  {
+                        'lineid': id,
+                         }
+        list_act = self.acttable.find(find_data)
+        list temp = []
+        for tmpAct in list_act:
+            if(date in tmpAct['actDate']):
+                temp = temp + tmpAct
+        return temp #用for 去拿資料
