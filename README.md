@@ -1,8 +1,9 @@
 ## ssh筆記
 - 怎麼測試
-  - `push`
+  - `git push`
   - `ssh 35.201.215.113`
   - `git clone` or `git pull`
+  - `cd FCU_DeepPlateProject`
   - `sudo docker-compose restart web`
 - mongo admin
   -  映射mongo admin 到http://127.0.0.1:7777 `ssh -o "ExitOnForwardFailure yes" -NL 127.0.0.1:7777:localhost:60005 35.201.215.113` 
