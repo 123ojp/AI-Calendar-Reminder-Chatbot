@@ -143,23 +143,23 @@ def webhook():
         if(search_type == 0):#搜全部活動
             search_act = searchAct(LID)
             for tmpAct in search_act:
-                tmptext = "活動：{}\n日期：{} 時間：{} 地點：{}".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
+                tmptext = "活動：{}\n日期：{} 時間：{} 地點：{}\n".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
                 respone_text = respone_text + tmptext
-        else if(search_type == 1): #搜尋日期的活動
+        elif(search_type == 1): #搜尋日期的活動
             search_act = searchActDate(LID,date)
             for tmpAct in search_act:
-                tmptext = "活動：{}\n日期：{} 時間：{} 地點：{}".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
+                tmptext = "活動：{}\n日期：{} 時間：{} 地點：{}\n".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
                 respone_text = respone_text + tmptext
-        else if(search_type == 2): #搜尋月的活動
+        elif(search_type == 2): #搜尋月的活動
             search_act = searchActMonth(LID,date)
             for tmpAct in search_act:
-                tmptext = "活動：{}\n日期：{} 時間：{} 地點：{}".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
+                tmptext = "活動：{}\n日期：{} 時間：{} 地點：{}\n".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
                 respone_text = respone_text + tmptext
         else:
             respone_text = '不確定要搜尋什麼條件 以下是你的所有活動\n'
             search_act = searchAct(LID)
             for tmpAct in search_act:
-                tmptext = "活動：{}\n日期：{} 時間：{} 地點：{}".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
+                tmptext = "活動：{}\n日期：{} 時間：{} 地點：{}\n".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
                 respone_text = respone_text + tmptext
         print ("辨別為搜尋")
 
