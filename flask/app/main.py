@@ -77,6 +77,7 @@ def webhook():
     if room_type == "user":
         room_type_n = 0
     LID = funt.getLine(org_req)
+    mongodb.insertMessage(LID,usersay)
 #    line(org_req.get('payload'))
     if mode == 'createActEasy':
         act,date,time,place,unix_time = funt.getActItem(parameters,org_req)
@@ -139,7 +140,7 @@ def webhook():
             return ""
     if mode == 'searchAct': #搜尋活動
         date,search_type = funt.getActDate(parameters,org_req)
-        respone_text = '搜尋結果為\n'
+        respone_text = '搜尋結果為\n'+str(date)+str(search_type)
         if(search_type == 0):#搜全部活動
             search_act = mongodb.searchAct(LID)
             for tmpAct in search_act:

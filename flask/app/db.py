@@ -9,7 +9,11 @@ class Db():
         self.inparttable = self.dbclient['InPart'] #餐與活動表table
         self.tmpacttable = self.dbclient['TmpAct'] #活動設定資料
         self.messagehistory = self.dbclient['MessageHistory'] #對話紀錄
-
+    def insertMessage(self,user_id,data):
+        insert_data = {'userID':user_id,
+                      'message':data,
+                      }
+        self.messagehistory.insert_one(insert_data)
     def isUser(self,user_id):
         search_data = {'userID':user_id}
         find_data = self.usertable.find_one(search_data)
