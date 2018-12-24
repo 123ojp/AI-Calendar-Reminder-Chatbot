@@ -166,7 +166,7 @@ class Db():
                         'lineid': id,
                          }
         list_act = self.acttable.find(find_data)
-        list temp = []
+        temp = []
         for tmpAct in list_act:
             if(date in tmpAct['actDate']):
                 temp.append(tmpAct)

@@ -141,23 +141,23 @@ def webhook():
         date,search_type = funt.getActDate(parameters,org_req)
         respone_text = '搜尋結果為\n'
         if(search_type == 0):#搜全部活動
-            search_act = searchAct(LID)
+            search_act = mongodb.searchAct(LID)
             for tmpAct in search_act:
                 tmptext = "活動：{}\n日期：{} 時間：{} 地點：{}\n".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
                 respone_text = respone_text + tmptext
         elif(search_type == 1): #搜尋日期的活動
-            search_act = searchActDate(LID,date)
+            search_act = mongodb.searchActDate(LID,date)
             for tmpAct in search_act:
                 tmptext = "活動：{}\n日期：{} 時間：{} 地點：{}\n".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
                 respone_text = respone_text + tmptext
         elif(search_type == 2): #搜尋月的活動
-            search_act = searchActMonth(LID,date)
+            search_act = mongodb.searchActMonth(LID,date)
             for tmpAct in search_act:
                 tmptext = "活動：{}\n日期：{} 時間：{} 地點：{}\n".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
                 respone_text = respone_text + tmptext
         else:
             respone_text = '不確定要搜尋什麼條件 以下是你的所有活動\n'
-            search_act = searchAct(LID)
+            search_act = mongodb.searchAct(LID)
             for tmpAct in search_act:
                 tmptext = "活動：{}\n日期：{} 時間：{} 地點：{}\n".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
                 respone_text = respone_text + tmptext
