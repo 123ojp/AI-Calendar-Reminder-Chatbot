@@ -77,11 +77,20 @@ class Db():
         newact = { "$set": { "actAlertStage": 1 } }
         self.acttable.update_one(getact, newact)
     def searchAct(self,id): #請給提醒ID
+        list_id = self.searchActid(id)
+        list_act = []
+        for tmpid in list_id:           
+            find_data =  {
+                            '_id': tmpid['actID'],
+                             }
+            list_act.append(self.acttable.find(find_data))
+        return list_act #用for 去拿資料
+    def searchActid(self,id): #請給提醒ID
         find_data =  {
                         'lineid': id,
                          }
-        list_act = self.acttable.find(find_data)
-        return list_act #用for 去拿資料
+        list_id = self.inparttable.find(find_data)        
+        return list_id #用for 去拿資料
     def delAct(self,id):
         find_data =  {
                         '_id': id,
@@ -159,17 +168,14 @@ class Db():
         self.tmpacttable.delete_one(find_data)
         
     def searchActDate(self,id,date): #請給提醒ID
-        find_data =  {
-                        'lineid': id,
-                        'actDate':date,
-                         }
-        list_act = self.acttable.find(find_data)
-        return list_act #用for 去拿資料
-    def searchActMonth(self,id,date): #請給提醒ID
-        find_data =  {
-                        'lineid': id,
-                         }
-        list_act = self.acttable.find(find_data)
+        list_id = self.searchActid(id)
+        list_act = []
+        for tmpid in list_id:           
+            find_data =  {
+                            '_id': tmpid['actID'],
+                            }
+            list_act.append(self.acttable.find(find_data))
+            
         temp = []
         for tmpAct in list_act:
             if(date in tmpAct['actDate']):
