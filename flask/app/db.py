@@ -232,10 +232,8 @@ class Db():
                             + yee[actDate] + ' '
                             + yee[actTime] + ' '
                             + yee[actPlace]
-                list_display_act_name_all_clean_string.append(string_tmp)
-            
+                list_display_act_name_all_clean_string.append(string_tmp)           
         except:
-            pass
-        
+            pass       
     
         return list_display_act_name_all_clean_string
