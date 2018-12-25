@@ -152,7 +152,7 @@ def webhook():
                 tmptext = "活動：{}\n日期：{} 時間：{} 地點：{}\n".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
                 respone_text = respone_text + tmptext
         elif(search_type == 2): #搜尋月的活動
-            search_act = mongodb.searchActMonth(LID,date)
+            search_act = mongodb.searchActDate(LID,date)
             for tmpAct in search_act:
                 tmptext = "活動：{}\n日期：{} 時間：{} 地點：{}\n".format(tmpAct['actName'],tmpAct['actDate'],tmpAct['actTime'],tmpAct['actPlace'])
                 respone_text = respone_text + tmptext
