@@ -140,7 +140,7 @@ def webhook():
             return ""
     if mode == 'searchAct': #搜尋活動
         date,search_type = funt.getActDate(parameters,org_req)
-        respone_text = '搜尋結果為\n'+str(date)+str(search_type)
+        respone_text = '搜尋結果為\n'
         if(search_type == 0):#搜全部活動
             search_act = mongodb.searchAct(LID)
             for tmpAct in search_act:
