@@ -183,6 +183,7 @@ def webhook():
             respone_text += "例子:確認刪除 6"
             for a in range(0, len(display_act)):
                 respone_text += str(a) + " =>" + display_act[a] + "\n"
+        print("執行delAct")
     
     #
     # elif mode == "LibraryBook":
