@@ -228,7 +228,7 @@ class Db():
             
             for yee in list_display_act_name_all:
                 string_tmp = ''
-                string_tmp =  yee[actName] +' '+ yee[actDate] +' '+ yee[actTime] +' '+ yee[actPlace]
+                string_tmp =  yee['actName'] +' '+ yee['actDate'] +' '+ yee['actTime'] +' '+ yee['actPlace']
                 list_display_act_name_all_clean_string.append(string_tmp)           
         except:
             pass       
