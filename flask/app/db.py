@@ -83,7 +83,7 @@ class Db():
             find_data =  {
                             '_id': tmpid['actID'],
                              }
-            list_act.append(self.acttable.find(find_data))
+            list_act.append(self.acttable.find_one(find_data))
         return list_act #用for 去拿資料
     def searchActid(self,id): #請給提醒ID
         find_data =  {
@@ -174,7 +174,7 @@ class Db():
             find_data =  {
                             '_id': tmpid['actID'],
                             }
-            list_act.append(self.acttable.find(find_data))
+            list_act.append(self.acttable.find_one(find_data))
             
         temp = []
         for tmpAct in list_act:
