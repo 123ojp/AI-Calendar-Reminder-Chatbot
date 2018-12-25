@@ -166,23 +166,23 @@ def webhook():
     
     
     if (mode == 'delAct'):
-    display_act = mongodb.searchUserSayAct(LID,parameters,usersay) 
+        display_act = mongodb.searchUserSayAct(LID,parameters,usersay) 
     #parameters 用來判斷有吃到dialogflow分好的，沒分好就拿原本訊息 
     
-    if( display_act == [] ):
-        respone_text = "尚未建立符合名稱活動 請使用'建立'功能生成活動\n"
-        respone_text += "或是確定使用'刪除'功能操作正確\n"
-        respone_text += "例子:刪除 開會"
-    elif( len(display_act) == 1): #剛好一筆符合 詢問確認刪除
-        respone_text = "找到一筆資料如下:\n" + display_act[0] 
-        respone_text += "欲刪除請使用'確認刪除'功能'\n"
-        respone_text += "例子:確認刪除"
-    elif( len(display_act) > 1 ): #多件 列出並標號
-        respone_text = "找到以下共" + str(len(display_act)) + "筆資料:\n"
-        respone_text += "欲刪除請使用'確認刪除'加上空格及欲刪除編號'\n"
-        respone_text += "例子:確認刪除 6"
-        for a in range(0, len(display_act)):
-            respone_text += str(a) + " =>" + display_act[a] + "\n"
+        if( display_act == [] ):
+            respone_text = "尚未建立符合名稱活動 請使用'建立'功能生成活動\n"
+            respone_text += "或是確定使用'刪除'功能操作正確\n"
+            respone_text += "例子:刪除 開會"
+        elif( len(display_act) == 1): #剛好一筆符合 詢問確認刪除
+            respone_text = "找到一筆資料如下:\n" + display_act[0] 
+            respone_text += "欲刪除請使用'確認刪除'功能'\n"
+            respone_text += "例子:確認刪除"
+        elif( len(display_act) > 1 ): #多件 列出並標號
+            respone_text = "找到以下共" + str(len(display_act)) + "筆資料:\n"
+            respone_text += "欲刪除請使用'確認刪除'加上空格及欲刪除編號'\n"
+            respone_text += "例子:確認刪除 6"
+            for a in range(0, len(display_act)):
+                respone_text += str(a) + " =>" + display_act[a] + "\n"
     
     #
     # elif mode == "LibraryBook":
