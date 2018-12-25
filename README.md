@@ -10,3 +10,6 @@
   -  連線位置:`mongodb://db:27017/`
 - mongo 
   - 映射mongo db 到本機 `ssh -o "ExitOnForwardFailure yes" -NL 127.0.0.1:27017:localhost:27017 35.201.215.113`
+
+## dialogflow筆記
+- intent Fulfillment那邊記得要開webhook
