@@ -181,3 +181,61 @@ class Db():
             if(date in tmpAct['actDate']):
                 temp.append(tmpAct)
         return temp #用for 去拿資料
+    def searchUserSayAct(self,line_id,dialogflow_even,user_say_text):
+        #先去inPart找line_id有對應到哪些活動id
+        #有的有多個要處理
+        #再去Act裡面用actID (== _id)找actName actDate actTime actPlace
+        search_data = {}
+        search_data = {'lineid':line_id}
+        found_inpart_data = self.inparttable.find(search_data)
+        try:    
+            for a in found_inpart_data:
+                list_found_act_id += [ a['actID'] ] #得到actID單一個值 把每一個連成一個list
+        except:
+            list_found_act_id = []
+        
+        try: #找個活動資料
+            list_found_act_all = []  #存著每個活動dict格式 的一個陣列
+            for aa in list_found_act_id:
+                one_act = self.acttable.find_one( {'_id':aa} )
+                list_found_act_all.append( one_act )
+        except:
+            list_found_act_all = []
+            
+        if( dialogflow_even != ''):
+            try:  #有吃到google parameters分類 event
+                list_display_act_name_all = []
+                for aaa in list_found_act_all:
+                    if( dialogflow_even['event'] in aaa['actName']  ):
+                        list_display_act_name_all.append(aaa) #存入要顯示的活動(活動為dict包含所有資訊)
+            except:
+                list_display_act_name_all = []
+        else:
+            try:  #沒吃到google parameters分類 event 用re
+                list_display_act_name_all = []
+                rule = r'\s.{,20}\s|\s.{,20}' #只拿刪除後面 活動名稱
+                list_find_user_say_text_act_name = re.findall(rule,user_say_text)
+                first_one = list_find_user_say_text_act_name[1].strip()
+                for bbb in list_found_act_all:
+                    if( first_one in bbb['actName'] ):
+                        list_display_act_name_all.append(bbb)            
+            except:
+                list_display_act_name_all = []
+        
+        #資料整理個(把個別dict內容提出) 輸出給main
+        try:
+            list_display_act_name_all_clean_string = []
+            
+            for yee in list_display_act_name_all:
+                string_tmp = ''
+                string_tmp =  yee[actName] + ' ' 
+                            + yee[actDate] + ' '
+                            + yee[actTime] + ' '
+                            + yee[actPlace]
+                list_display_act_name_all_clean_string.append(string_tmp)
+            
+        except:
+            pass
+        
+    
+        return list_display_act_name_all_clean_string
