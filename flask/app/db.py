@@ -192,6 +192,7 @@ class Db():
         try:    
             for a in found_inpart_data:
                 list_found_act_id += [ a['actID'] ] #得到actID單一個值 把每一個連成一個list
+            print('try 1')
         except:
             list_found_act_id = []
             print('error at try 1')
@@ -201,6 +202,7 @@ class Db():
             for aa in list_found_act_id:
                 one_act = self.acttable.find_one( {'_id':aa} )
                 list_found_act_all.append( one_act )
+            print('try 2')
         except:
             list_found_act_all = []
             print('error at try 2')
@@ -211,6 +213,7 @@ class Db():
                 for aaa in list_found_act_all:
                     if( dialogflow_even['event'] in aaa['actName']  ):
                         list_display_act_name_all.append(aaa) #存入要顯示的活動(活動為dict包含所有資訊)
+                print('try 3')
             except:
                 list_display_act_name_all = []
                 print('error at try 3')
@@ -223,6 +226,7 @@ class Db():
                 for bbb in list_found_act_all:
                     if( first_one in bbb['actName'] ):
                         list_display_act_name_all.append(bbb)            
+                print('try 4')
             except:
                 list_display_act_name_all = []
                 print('error at try 4')
@@ -234,6 +238,7 @@ class Db():
                 string_tmp = ''
                 string_tmp =  yee['actName'] + ' ' + yee['actDate'] + ' ' + yee['actTime'] + ' ' + yee['actPlace']
                 list_display_act_name_all_clean_string.append(string_tmp)
+            print('try 5')
         except:
             print('error at try 5')
             pass
