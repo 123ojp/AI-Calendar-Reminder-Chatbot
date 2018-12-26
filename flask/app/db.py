@@ -189,9 +189,10 @@ class Db():
         search_data = {}
         search_data = {'lineid':line_id}
         found_inpart_data = self.inparttable.find(search_data)
-        try:    
+        try:
+            list_found_act_id = []
             for a in found_inpart_data:
-                list_found_act_id += [ a['actID'] ] #得到actID單一個值 把每一個連成一個list
+                list_found_act_id.append( a['actID'] )  #得到actID單一個值 把每一個連成一個list
             print('try 1')
         except:
             list_found_act_id = []
