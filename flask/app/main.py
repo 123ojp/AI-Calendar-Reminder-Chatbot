@@ -186,6 +186,8 @@ def webhook():
                 if( a != len(display_act)-1 ): #最後一個不要跳行
                     respone_text += '\n'
         print("執行delAct")
+        
+    if (mode == 'updateAct'):
     
     #
     # elif mode == "LibraryBook":
