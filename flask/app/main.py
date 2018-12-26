@@ -187,6 +187,38 @@ def webhook():
                     respone_text += '\n'
         print("執行delAct")
     
+    
+    
+    
+    if (mode == 'updateAct'):
+        display_act = mongodb.searchUserSayAct(LID,parameters,usersay) 
+    #parameters 用來判斷有吃到dialogflow分好的，沒分好就拿原本訊息 
+    
+        if( display_act == [] ):
+            respone_text = "尚未建立符合名稱活動 請使用'建立'功能生成活動\n"
+            respone_text += "或是確定使用'更新'功能操作正確\n"
+            respone_text += "例子:更新 開會"
+        elif( len(display_act) == 1): #剛好一筆符合 詢問確認更新
+            respone_text = "找到一筆資料如下:\n" + display_act[0] + "\n"
+            respone_text += "欲更新請使用'確認更新'功能'\n"
+            respone_text += "例子:確認更新"
+        elif( len(display_act) > 1 ): #多件 列出並標號
+            respone_text = "找到以下共" + str(len(display_act)) + "筆資料:\n"
+            respone_text += "欲更新請使用'確認更新'加上空格及欲更新編號'\n"
+            respone_text += "例子:確認更新 6\n"
+            for a in range(0, len(display_act)):
+                respone_text += str(a+1) + " =>" + display_act[a] #(a+1)是為因user習慣
+                if( a != len(display_act)-1 ): #最後一個不要跳行
+                    respone_text += '\n'
+        print("執行updateAct")
+        
+        
+        
+        
+        
+        
+        
+        
         
     #
     # elif mode == "LibraryBook":
