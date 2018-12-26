@@ -183,8 +183,8 @@ def webhook():
             respone_text += "例子:確認刪除 6\n"
             for a in range(0, len(display_act)):
                 respone_text += str(a+1) + " =>" + display_act[a] #(a+1)是為因user習慣
-            if( a != len(display_act) ): #最後一個不要跳行
-                respone_text += '\n'
+                if( a != len(display_act) ): #最後一個不要跳行
+                    respone_text += '\n'
         print("執行delAct")
     
     #
