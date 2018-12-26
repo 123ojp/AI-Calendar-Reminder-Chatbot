@@ -174,7 +174,7 @@ def webhook():
             respone_text += "或是確定使用'刪除'功能操作正確\n"
             respone_text += "例子:刪除 開會"
         elif( len(display_act) == 1): #剛好一筆符合 詢問確認刪除
-            respone_text = "找到一筆資料如下:\n" + display_act[0] 
+            respone_text = "找到一筆資料如下:\n" + display_act[0] + "\n"
             respone_text += "欲刪除請使用'確認刪除'功能'\n"
             respone_text += "例子:確認刪除"
         elif( len(display_act) > 1 ): #多件 列出並標號
