@@ -180,9 +180,9 @@ def webhook():
         elif( len(display_act) > 1 ): #多件 列出並標號
             respone_text = "找到以下共" + str(len(display_act)) + "筆資料:\n"
             respone_text += "欲刪除請使用'確認刪除'加上空格及欲刪除編號'\n"
-            respone_text += "例子:確認刪除 6"
+            respone_text += "例子:確認刪除 6\n"
             for a in range(0, len(display_act)):
-                respone_text += str(a) + " =>" + display_act[a] + "\n"
+                respone_text += str(a+1) + " =>" + display_act[a] + "\n"
         print("執行delAct")
     
     #
