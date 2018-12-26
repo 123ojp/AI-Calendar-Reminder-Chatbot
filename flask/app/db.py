@@ -181,7 +181,8 @@ class Db():
             if(date in tmpAct['actDate']):
                 temp.append(tmpAct)
         return temp #用for 去拿資料
-     def searchUserSayAct(self,line_id,dialogflow_even,user_say_text):
+    
+    def searchUserSayAct(self,line_id,dialogflow_even,user_say_text):
         #先去inPart找line_id有對應到哪些活動id
         #有的有多個要處理
         #再去Act裡面用actID (== _id)找actName actDate actTime actPlace
