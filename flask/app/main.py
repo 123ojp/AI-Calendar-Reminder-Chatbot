@@ -186,7 +186,7 @@ def webhook():
                 if( a != len(display_act)-1 ): #最後一個不要跳行
                     respone_text += '\n'
         print("執行delAct")
-    if (mode == sureDelAct):
+    if (mode == 'sureDelAct'):
     #就是依樣內部呼叫一樣的查詢，然後找到使用者要刪除的編號
     
         display_act,act_id = mongodb.searchUserSayAct(LID,parameters,usersay) 
