@@ -225,7 +225,7 @@ def webhook():
     
     
     if (mode == 'updateAct'):
-        display_act = mongodb.searchUserSayAct(LID,parameters,usersay) 
+        display_act,act_id = mongodb.searchUserSayAct(LID,parameters,usersay)
     #parameters 用來判斷有吃到dialogflow分好的，沒分好就拿原本訊息 
     
         if( display_act == [] ):
