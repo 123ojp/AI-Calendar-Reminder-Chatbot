@@ -187,7 +187,7 @@ def webhook():
                     respone_text += '\n'
         print("執行delAct")
         
-        
+    
     if (mode == 'sureDelAct'):
     #就是依樣內部呼叫一樣的查詢，然後找到使用者要刪除的編號
         respone_text = ""
@@ -228,25 +228,55 @@ def webhook():
     
         if( display_act == [] ):
             respone_text = "尚未建立符合名稱活動 請使用'建立'功能生成活動\n"
-            respone_text += "或是確定使用'更新'功能操作正確\n"
-            respone_text += "例子:更新 開會"
-        elif( len(display_act) == 1): #剛好一筆符合 詢問確認更新
+            respone_text += "或是確定使用'修改'功能操作正確\n"
+            respone_text += "例子:修改 開會"
+        elif( len(display_act) == 1): #剛好一筆符合 詢問確認修改
             respone_text = "找到一筆資料如下:\n" + display_act[0] + "\n"
-            respone_text += "欲更新請使用'確認更新'功能'\n"
-            respone_text += "例子:確認更新"
+            respone_text += "欲修改請使用'確認修改'功能'\n"
+            respone_text += "例子:確認修改"
         elif( len(display_act) > 1 ): #多件 列出並標號
             respone_text = "找到以下共" + str(len(display_act)) + "筆資料:\n"
-            respone_text += "欲更新請使用'確認更新'加上空格及欲更新編號'\n"
-            respone_text += "例子:確認更新 6\n"
+            respone_text += "欲修改請使用'確認修改'加上空格及欲修改編號'\n"
+            respone_text += "例子:確認修改 6\n"
             for a in range(0, len(display_act)):
-                respone_text += str(a+1) + " =>" + display_act[a] #(a+1)是為因user習慣
-                if( a != len(display_act)-1 ): #最後一個不要跳行
+                respone_text += str(a+1) + " =>" + display_act[a] 
+                if( a != len(display_act)-1 ): 
                     respone_text += '\n'
         print("執行updateAct")
         
-        
-        
-        
+    '''
+    if (mode == 'sureUpdateAct'):
+    #就是依樣內部呼叫一樣的查詢，然後找到使用者要刪除的編號
+        respone_text = ""
+        display_act,act_id = mongodb.searchUserSayAct(LID,parameters,usersay) 
+        #parameters 用來判斷有吃到dialogflow分好的，沒分好就拿原本訊息 
+        #另外 傳回來活動id 
+        try:
+            number = int(parameters['number']) #這邊直接拿main這邊的
+        except:
+            respone_text += 'error at sureUpdateAct\n'
+            print('error at sureUpdateAct')
+
+        #接著呢 挑出要修改的id
+        act_want_to_update = ''
+        try:
+            act_want_to_update = act_id[number-1]   #-1 因為當初number給user是從1開始
+            respone_text += str(act_want_to_update)
+        except:
+            print('list number error in main')
+
+        #呼叫實際修改 傳入要修改的 回傳是一個字串 成功或失敗
+        suc_message = mongodb.sureDelInDB(act_want_to_update)
+
+        if (suc_message == "suc"):
+            print('刪除成功')
+            respone_text += "刪除成功"
+        if (suc_message == "false"):
+            print("刪除失敗，請重新執行'刪除'指令\n並且確定有此編號")
+            respone_text += "刪除失敗，請重新執行'刪除確認'指令/n並且確定有此編號"
+        else:
+            print('error in return')
+    '''
         
         
         
