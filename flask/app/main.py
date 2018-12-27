@@ -206,9 +206,9 @@ def webhook():
         #呼叫實際刪除 傳入要刪除的 回傳是一個字串 成功或失敗
         suc_message = mangodb.sureDelInDB(act_want_to_delete)
 
-        if (suc_message = "suc"):
+        if (suc_message == "suc"):
             print('刪除成功')
-        if (suc_message = "false"):
+        if (suc_message == "false"):
             print("刪除失敗，請重新執行'刪除'指令/n並且確定有此編號")
         else:
             print('error in return')
