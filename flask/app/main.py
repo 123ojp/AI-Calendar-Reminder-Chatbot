@@ -205,7 +205,7 @@ def webhook():
             print('list number error in main')
             respone_text = "輸入錯誤編號，請重新執行'確認刪除'功能"
         #呼叫實際刪除 傳入要刪除的 回傳是一個字串 成功或失敗
-        suc_message = mangodb.sureDelInDB(act_want_to_delete)
+        suc_message = mongodb.sureDelInDB(act_want_to_delete)
 
         if (suc_message == "suc"):
             print('刪除成功')
