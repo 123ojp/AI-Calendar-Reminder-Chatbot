@@ -186,33 +186,37 @@ def webhook():
                 if( a != len(display_act)-1 ): #最後一個不要跳行
                     respone_text += '\n'
         print("執行delAct")
+        
+        
     if (mode == 'sureDelAct'):
     #就是依樣內部呼叫一樣的查詢，然後找到使用者要刪除的編號
-    
+        respone_text = ""
         display_act,act_id = mongodb.searchUserSayAct(LID,parameters,usersay) 
         #parameters 用來判斷有吃到dialogflow分好的，沒分好就拿原本訊息 
         #另外 傳回來活動id 
         try:
             number = int(parameters['number']) #這邊直接拿main這邊的
         except:
+            respone_text += 'error at sureDelAct\n'
             print('error at sureDelAct')
 
         #接著呢 挑出要刪的id
         act_want_to_delete = ''
         try:
             act_want_to_delete = act_id[number-1]   #-1 因為當初number給user是從1開始
+            respone_text += str(act_want_to_delete)
         except:
             print('list number error in main')
-            respone_text = "輸入錯誤編號，請重新執行'確認刪除'功能"
+            respone_text += "list number error in main"
         #呼叫實際刪除 傳入要刪除的 回傳是一個字串 成功或失敗
         suc_message = mongodb.sureDelInDB(act_want_to_delete)
 
         if (suc_message == "suc"):
             print('刪除成功')
-            respone_text = "刪除成功"
+            respone_text += "刪除成功"
         if (suc_message == "false"):
-            print("刪除失敗，請重新執行'刪除'指令/n並且確定有此編號")
-            respone_text = "刪除失敗，請重新執行'刪除確認'指令\n並且確定有此編號"
+            print("刪除失敗，請重新執行'刪除'指令\n並且確定有此編號")
+            respone_text += "刪除失敗，請重新執行'刪除確認'指令/n並且確定有此編號"
         else:
             print('error in return')
     
