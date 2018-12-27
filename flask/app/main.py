@@ -179,8 +179,8 @@ def webhook():
             respone_text += "例子:確認刪除"
         elif( len(display_act) > 1 ): #多件 列出並標號
             respone_text = "找到以下共" + str(len(display_act)) + "筆資料:\n"
-            respone_text += "欲刪除請使用'確認刪除'加上空格及欲刪除編號'\n"
-            respone_text += "例子:確認刪除 6\n"
+            respone_text += "欲刪除請使用'確認刪除'加上空格及名稱，再加上空格及欲刪除編號'\n"
+            respone_text += "例子:確認刪除 開會 6\n"
             for a in range(0, len(display_act)):
                 respone_text += str(a+1) + " =>" + display_act[a] #(a+1)是為因user習慣
                 if( a != len(display_act)-1 ): #最後一個不要跳行
@@ -204,7 +204,7 @@ def webhook():
             print('list number error in main')
             
         #呼叫實際刪除 傳入要刪除的 回傳是一個字串 成功或失敗
-        suc_message = mangodb.sureDelInDB(act_want_to_delete)
+        suc_message = mongodb.sureDelInDB(act_want_to_delete)
 
         if (suc_message == "suc"):
             print('刪除成功')
