@@ -277,11 +277,12 @@ class Db():
     
     def sureDelInDB(self,user_chose_to_del_act_id):  #這邊要刪兩個table 避免referential integrity constraint QQ
         #首先呢 避免出錯find_one一下
+        list_tmp = []
         tmp = { '_id' : user_chose_to_del_act_id }
         find_first = self.acttable.find_one(tmp) #這是回傳一個cursor QQ 不是dict    
-        print(find_first)      
-        if( len(find_first['_id']) ==  24): #應該找出_id 長度為24字串
+        list_tmp.append( find_first )     
+        if( len(list_tmp) == 1): #應該找出_id 長度為24字串
             print('test area for del')
             return "suc"
         else:
-            return "false"    
+            return "false"
