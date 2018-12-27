@@ -282,6 +282,7 @@ class Db():
         list_found_data = []
         for a in find_first:
             list_found_data.append( a['_id'] ) #就挑一個值出來 正常應該是整個list裡只有一個
+        print(list_found_data)
         if( len(list_found_data) ==  1): #應該 只找出一項
             print('test area for del')
             return "suc"
