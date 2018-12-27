@@ -280,7 +280,7 @@ class Db():
         tmp = { '_id' : user_chose_to_del_act_id }
         find_first = self.acttable.find_one(tmp) #這是回傳一個cursor QQ 不是dict    
         print(find_first)      
-        if( len(find_first['id']) ==  24): #應該找出_id 長度為24字串
+        if( len(find_first['_id']) ==  24): #應該找出_id 長度為24字串
             print('test area for del')
             return "suc"
         else:
