@@ -79,11 +79,14 @@ class Db():
     def searchAct(self,id): #請給提醒ID
         list_id = self.searchActid(id)
         list_act = []
+        tmpact = ''
         for tmpid in list_id:           
             find_data =  {
                             '_id': tmpid['actID'],
                              }
-            list_act.append(self.acttable.find_one(find_data))
+            tmpact = self.acttable.find_one(find_data)
+            if( tmpact != None ):
+                    list_act.append(tmpact)
         return list_act #用for 去拿資料
     def searchActid(self,id): #請給提醒ID
         find_data =  {
@@ -178,11 +181,14 @@ class Db():
     def searchActDate(self,id,date): #請給提醒ID
         list_id = self.searchActid(id)
         list_act = []
+        one_act = ''
         for tmpid in list_id:           
             find_data =  {
                             '_id': tmpid['actID'],
                             }
-            list_act.append(self.acttable.find_one(find_data))
+            one_act = self.acttable.find_one(find_data)
+            if( one_act != None ):
+                    list_act.append(tmpact)
             
         temp = []
         for tmpAct in list_act:
