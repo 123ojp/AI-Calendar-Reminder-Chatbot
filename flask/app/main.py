@@ -198,6 +198,7 @@ def webhook():
             print('error at sureDelAct')
 
         #接著呢 挑出要刪的id
+        act_want_to_delete  = ''
         try:
             act_want_to_delete = act_id[number-1]   #-1 因為當初number給user是從1開始
         except:
