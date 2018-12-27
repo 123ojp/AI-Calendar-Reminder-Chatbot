@@ -245,30 +245,23 @@ class Db():
             except:
                 list_display_act_name_all = []
                 print('error at try 4')
-        #資料整理個(把個別dict內容提出) 輸出給main
+                #資料整理個(把個別dict內容提出) 輸出給main
+        # 多回傳一個活動id (==_id)
         try:
             list_display_act_name_all_clean_string = []
-            
+            list_act_id_return = []
             for yee in list_display_act_name_all:
                 string_tmp = ''
                 string_tmp =  yee['actName'] + ' ' + yee['actDate'] + ' ' + yee['actTime'] + ' ' + yee['actPlace']
+                one_act_id = ''
+                one_act_id =  yee['_id']
                 list_display_act_name_all_clean_string.append(string_tmp)
+                list_act_id_return.append(one_act_id)
             print('try 5')
         except:
+            list_display_act_name_all_clean_string = []
+            list_act_id_return = []
             print('error at try 5')
-            pass
-        
-        # 多回傳一個活動id (==_id)
-        try:
-            list_act_id_return = []
-            for y in list_display_act_name_all:
-                one_act_id = ''
-                one_act_id = y['_id']
-                list_act_id_return.append(one_act_id)
-            print('try 6')
-        except:
-            list_act_id_return = []
-            print('error at try 6') 
             
         return list_display_act_name_all_clean_string,list_act_id_return
         #回傳一個list 其為包含user輸入名稱的 活動(dict) 
