@@ -181,7 +181,6 @@ def webhook():
             respone_text = "找到以下共" + str(len(display_act)) + "筆資料:\n"
             respone_text += "欲刪除請使用'確認刪除'加上空格及名稱，再加上空格及欲刪除編號'\n"
             respone_text += "例子:確認刪除 開會 6\n"
-            respone_text += str(act_id)
             for a in range(0, len(display_act)):
                 respone_text += str(a+1) + " =>" + display_act[a] #(a+1)是為因user習慣
                 if( a != len(display_act)-1 ): #最後一個不要跳行
@@ -197,9 +196,6 @@ def webhook():
         #另外 傳回來活動id 
         try:
             number = int(parameters['number']) #這邊直接拿main這邊的
-            respone_text += str(display_act)
-            respone_text += str(act_id)+  "///" + str(len(act_id)) + "\n"
-            respone_text += str(number) + "\n"
         except:
             respone_text += 'error at sureDelAct\n'
             print('error at sureDelAct')
@@ -211,7 +207,7 @@ def webhook():
             respone_text += str(act_want_to_delete)
         except:
             print('list number error in main')
-            respone_text += "list number error in main"
+
         #呼叫實際刪除 傳入要刪除的 回傳是一個字串 成功或失敗
         suc_message = mongodb.sureDelInDB(act_want_to_delete)
 
