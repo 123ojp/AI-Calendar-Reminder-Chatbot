@@ -259,8 +259,29 @@ class Db():
         except:
             print('error at try 5')
             pass
+        
+        # 多回傳一個活動id (==_id)
+        try:
+            list_act_id_return = []
+            for y in list_display_act_name_all:
+                one_act_id = ''
+                one_act_id = y['_id']
+                list_act_id_return.append(one_act_id)
+            print('try 6')
+        except:
+            list_act_id_return = []
+            print('error at try 6') 
             
-        return list_display_act_name_all_clean_string
-        #回傳一個list 其為包含user輸入名稱的 活動(dict)       
+        return list_display_act_name_all_clean_string,list_act_id_return
+        #回傳一個list 其為包含user輸入名稱的 活動(dict) 
+        #多回傳一個list 其為找出活動的 id
+        
     
-        return list_display_act_name_all_clean_string
+    def sureDelInDB(self,user_chose_to_del_act_id):  #這邊要刪兩個table 避免referential integrity constraint QQ
+        #首先呢 避免出錯find一下
+        tmp = { '_id' : user_chose_to_del_act_id }
+        find_first = self.acttable.find(tmp) #這是回傳一個dict
+        if( len(find_first) !=  1): #應該 只找出一項
+              print('test area for del')           
+        else:
+            return "false"        
