@@ -196,6 +196,7 @@ def webhook():
         #另外 傳回來活動id 
         try:
             number = int(parameters['number']) #這邊直接拿main這邊的
+            respone_text += str(display_act)
             respone_text += str(act_id)+  "///" + str(len(act_id)) + "\n"
             respone_text += str(number) + "\n"
         except:
