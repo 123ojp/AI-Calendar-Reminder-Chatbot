@@ -210,7 +210,8 @@ class Db():
             list_found_act_all = []  #存著每個活動dict格式 的一個陣列
             for aa in list_found_act_id:
                 one_act = self.acttable.find_one( {'_id':aa} )
-                list_found_act_all.append( one_act )
+                if( one_act != None ):
+                    list_found_act_all.append( one_act )
             print('try 2')
         except:
             list_found_act_all = []
