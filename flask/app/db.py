@@ -214,6 +214,7 @@ class Db():
         
         try: #找個活動資料
             list_found_act_all = []  #存著每個活動dict格式 的一個陣列
+            one_act = ''
             for aa in list_found_act_id:
                 one_act = self.acttable.find_one( {'_id':aa} )
                 if( one_act != None ):
