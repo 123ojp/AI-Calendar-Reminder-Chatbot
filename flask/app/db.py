@@ -278,13 +278,10 @@ class Db():
     def sureDelInDB(self,user_chose_to_del_act_id):  #這邊要刪兩個table 避免referential integrity constraint QQ
         #首先呢 避免出錯find_one一下
         tmp = { '_id' : user_chose_to_del_act_id }
-        find_first = self.acttable.find(tmp) #這是回傳一個cursor QQ 不是dict
-        list_found_data = []
-        for a in find_first:
-            list_found_data.append( a['_id'] ) #就挑一個值出來 正常應該是整個list裡只有一個
-        print(list_found_data,len(list_found_data),"===========")
-        if( len(list_found_data) ==  1): #應該 只找出一項
+        find_first = self.acttable.find_one(tmp) #這是回傳一個cursor QQ 不是dict    
+        print(find_first)      
+        if( len(find_first['id']) ==  24): #應該找出_id 長度為24字串
             print('test area for del')
             return "suc"
         else:
-            return "false"       
+            return "false"    
