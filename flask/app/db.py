@@ -254,7 +254,7 @@ class Db():
                 string_tmp = ''
                 string_tmp =  yee['actName'] + ' ' + yee['actDate'] + ' ' + yee['actTime'] + ' ' + yee['actPlace']
                 one_act_id = ''
-                one_act_id =  yee['actAlert']
+                one_act_id =  yee['actName']
                 list_display_act_name_all_clean_string.append(string_tmp)
                 list_act_id_return.append(one_act_id)
             print('try 5')
