@@ -204,7 +204,7 @@ def webhook():
         act_want_to_delete = ''
         try:
             act_want_to_delete = act_id[number-1]   #-1 因為當初number給user是從1開始
-            respone_text += str(act_want_to_delete)
+            respone_text += str(act_want_to_delete) + "///"
         except:
             print('list number error in main')
 
