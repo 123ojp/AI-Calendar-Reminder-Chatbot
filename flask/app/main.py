@@ -213,10 +213,11 @@ def webhook():
 
         if (suc_message == "suc"):
             print('刪除成功')
-            respone_text += "刪除成功"
+            respone_text += "刪除成功\n"
+            respone_text += str(act_want_to_delete)
         if (suc_message == "false"):
             print("刪除失敗，請重新執行'刪除'指令\n並且確定有此編號")
-            respone_text += "刪除失敗，請重新執行'刪除確認'指令/n並且確定有此編號"
+            respone_text += "刪除失敗，請重新執行'刪除確認'指令\n並且確定有此編號"
         else:
             print('error in return')
     
