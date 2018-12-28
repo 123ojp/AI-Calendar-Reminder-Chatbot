@@ -245,9 +245,9 @@ def webhook():
                     respone_text += '\n'
         print("執行updateAct")
         
-    '''
+    
     if (mode == 'sureUpdateAct'):
-    #就是依樣內部呼叫一樣的查詢，然後找到使用者要刪除的編號
+    #就是依樣內部呼叫一樣的查詢，然後找到使用者要修改的編號
         respone_text = ""
         display_act,act_id = mongodb.searchUserSayAct(LID,parameters,usersay) 
         #parameters 用來判斷有吃到dialogflow分好的，沒分好就拿原本訊息 
@@ -270,14 +270,15 @@ def webhook():
         suc_message = mongodb.sureDelInDB(act_want_to_update)
 
         if (suc_message == "suc"):
-            print('刪除成功')
-            respone_text += "刪除成功"
+            print('修改成功')
+            respone_text += "修改成功\n"
+            respone_text += str(act_want_to_update)
         if (suc_message == "false"):
-            print("刪除失敗，請重新執行'刪除'指令\n並且確定有此編號")
-            respone_text += "刪除失敗，請重新執行'刪除確認'指令/n並且確定有此編號"
+            print("修改失敗，請重新執行'修改'指令\n並且確定有此編號")
+            respone_text += "修改失敗，請重新執行'修改確認'指令\n並且確定有此編號"
         else:
             print('error in return')
-    '''
+    
         
         
         
