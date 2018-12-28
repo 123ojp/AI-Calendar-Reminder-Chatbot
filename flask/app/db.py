@@ -222,16 +222,28 @@ class Db():
             list_found_act_all = []
             print('error at try 2')
             
-        if( dialogflow_even['event'] != ''):
-            try:  #有吃到google parameters分類 event
-                list_display_act_name_all = []
-                for aaa in list_found_act_all:
-                    if( dialogflow_even['event'] in aaa['actName']  ):
-                        list_display_act_name_all.append(aaa) #存入要顯示的活動(活動為dict包含所有資訊)
-                print('try 3')
-            except:
-                list_display_act_name_all = []
-                print('error at try 3')
+        if( dialogflow_even['event']!= '' or dialogflow_even['event'][0]!= ''):  ##這邊如果是sureDelAct呼叫會變list ==
+            if(dialogflow_even['event']!= ''):
+                try:  #有吃到google parameters分類 event
+                    list_display_act_name_all = []
+                    for aaa in list_found_act_all:
+                        if( dialogflow_even['event'] in aaa['actName']  ):
+                            list_display_act_name_all.append(aaa) #存入要顯示的活動(活動為dict包含所有資訊)
+                    print('try 3_1')
+                except:
+                    list_display_act_name_all = []
+                    print('error at try 3_1')
+            else:
+                try:  #有吃到google parameters分類 event
+                    list_display_act_name_all = []
+                    for aaa in list_found_act_all:
+                        if( dialogflow_even['event'][0] in aaa['actName']  ):
+                            list_display_act_name_all.append(aaa) #存入要顯示的活動(活動為dict包含所有資訊)
+                    print('try 3_2')
+                except:
+                    list_display_act_name_all = []
+                    print('error at try 3_2')              
+                    
         else:
             try:  #沒吃到google parameters分類 event 用re
                 list_display_act_name_all = []
@@ -245,7 +257,8 @@ class Db():
             except:
                 list_display_act_name_all = []
                 print('error at try 4')
-                #資料整理個(把個別dict內容提出) 輸出給main
+        
+        #資料整理個(把個別dict內容提出) 輸出給main
         # 多回傳一個活動id (==_id)
         try:
             list_display_act_name_all_clean_string = []
