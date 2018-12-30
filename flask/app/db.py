@@ -113,15 +113,6 @@ class Db():
         find_data =  {
                         'actID': id,
                          }
-    def updateAct(self,id):
-        find_data =  {
-                        '_id': id,
-                         }
-        self.acttable.delete_one(find_data)
-        find_data =  {
-                        'actID': id,
-                         }
-        self.inparttable.delete_one(find_data)
     def isSettingTmpAct(self,id):
         search_data = {
                     'lineid':id,
