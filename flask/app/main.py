@@ -267,17 +267,8 @@ def webhook():
             print('list number error in main')
 
         #呼叫實際修改 傳入要修改的 回傳是一個字串 成功或失敗
-        suc_message = mongodb.sureDelInDB(act_want_to_update)
-
-        if (suc_message == "suc"):
-            print('修改成功')
-            respone_text += "修改成功\n"
-            respone_text += str(act_want_to_update)
-        if (suc_message == "false"):
-            print("修改失敗，請重新執行'修改'指令\n並且確定有此編號")
-            respone_text += "修改失敗，請重新執行'修改確認'指令\n並且確定有此編號"
-        else:
-            print('error in return')
+        act,date,time,place,unix_time = funt.getActItem(parameters,org_req)
+        mongodb.updateAct(LID,room_type_n,act,date,time,place,unix_time)
     
         
         
