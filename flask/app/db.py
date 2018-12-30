@@ -60,6 +60,18 @@ class Db():
                         }
         id = self.acttable.insert(insert_data)
         self.insertActandID(id,LID,Ltype)
+        
+    def updateAct(self,LID,Ltype,name,date,time,place,alert_time) :  #update test
+        update_data = {'actName':name,
+                        'actDate':date,
+                        'actTime':time,
+                        'actPlace':place,
+                        'actAlert':alert_time,
+                        'actAlertStage':0, #0表示無
+                        }
+        id = self.acttable.update_one(update_data)
+        self.insertActandID(id,LID,Ltype)
+        
     def getalertAct(self):
         find_data =  {
                         'actAlert': { "$lt": int(time.time()) },
