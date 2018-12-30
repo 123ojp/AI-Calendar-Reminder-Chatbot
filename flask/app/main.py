@@ -267,9 +267,12 @@ def webhook():
             print('list number error in main')
 
         #呼叫實際修改 傳入要修改的 回傳是一個字串 成功或失敗
-        act,date,time,place,unix_time = funt.getActItem(parameters,org_req)
-        mongodb.updateAct(LID,room_type_n,act,date,time,place,unix_time)
-    
+        try :
+            act,date,time,place,unix_time = funt.getActItem(parameters,org_req)
+            mongodb.updateAct(LID,room_type_n,act,date,time,place,unix_time)
+            respone_text += '修改成功'
+        except :
+            respone_text += '修改失敗'
         
         
         
