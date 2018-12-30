@@ -127,7 +127,16 @@ def webhook():
             time_re = re.search('([0-9]{1,2}):([0-9]{1,2})',tmpAct['actTime'])
             hour = int(time_re.group(1))
             min = int(time_re.group(2))
-            date_re = re.search('([0-9]{4})年([0-9]{2})月([0-9]{2})',tmpAct['actDate'])
+            date_re =None
+            try:
+                date_re = re.search('([0-9]{4})年([0-9]{2})月([0-9]{2})',tmpAct['actDate'])
+                year = int(date_re.group(1))
+            except :
+                try :
+                    date_re = re.search('([0-9]{4})年([0-9]{1,2})月([0-9]{2})',tmpAct['actDate'])
+                    year = int(date_re.group(1))
+                except:
+                    date_re = re.search('([0-9]{4})年([0-9]{1,2})月([0-9]{1,2})',tmpAct['actDate'])
             year = int(date_re.group(1))
             month = int(date_re.group(2))
             day = int(date_re.group(3))
