@@ -263,6 +263,7 @@ def webhook():
         #另外 傳回來活動id 
         try:
             number = int(parameters['number']) #這邊直接拿main這邊的
+            print ('get number success')
         except:
             respone_text += 'error at sureUpdateAct\n'
             print('error at sureUpdateAct')
