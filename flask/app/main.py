@@ -262,7 +262,7 @@ def webhook():
         try :
             display_act,act_id = mongodb.searchUserSayAct(LID,parameters,usersay) 
             print ('display_act suc')
-        else :
+        e :
             print ('display_act error')
             
             
