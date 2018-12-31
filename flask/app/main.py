@@ -285,6 +285,8 @@ def webhook():
 
         #呼叫實際修改 傳入要修改的 回傳是一個字串 成功或失敗
         try :
+            print (funt.getActItem(parameters,org_req))
+            
             act,number,date,time,place,unix_time = funt.getActItem(parameters,org_req)
             respone_text += '修改成功\n'
             mongodb.updateAct(LID,room_type_n,act,date,time,place,unix_time)
