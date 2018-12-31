@@ -257,20 +257,22 @@ def webhook():
     
     if (mode == 'sureUpdateAct'):
     #就是依樣內部呼叫一樣的查詢，然後找到使用者要修改的編號
-        respone_text = ""
+        respone_text = ''
         
         try :
             display_act,act_id = mongodb.searchUserSayAct(LID,parameters,usersay) 
             print ('display_act suc')
+            respone_text += 'display_act suc\n'
         except :
             print ('display_act error')
-            
+            respone_text += 'display_act error\n'
             
         #parameters 用來判斷有吃到dialogflow分好的，沒分好就拿原本訊息 
         #另外 傳回來活動id 
         try:
             number = int(parameters['number']) #這邊直接拿main這邊的
             print ('get number success')
+            respone_text += 'get number success\n'
         except:
             respone_text += 'error at sureUpdateAct\n'
             print('error at sureUpdateAct')
@@ -282,16 +284,19 @@ def webhook():
             respone_text += str(act_want_to_update)
         except:
             print('list number error in main')
+            respone_text += 'list number error in main\n'
 
         #呼叫實際修改 傳入要修改的 回傳是一個字串 成功或失敗
         try :
             print('try')
+            respone_text += 'try\n'
             act,date,time,place,unix_time = funt.getActItem(parameters,org_req)
-            print ('assign suc')
+            print ('assign suc\n')
+            respone_text += 'assign suc\n'
             mongodb.updateAct(LID,room_type_n,act,date,time,place,unix_time)
-            respone_text += '修改成功'
+            respone_text += '修改成功\n'
         except :
-            respone_text += '修改失敗'
+            respone_text += '修改失敗\n'
         
         
         
