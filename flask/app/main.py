@@ -258,7 +258,14 @@ def webhook():
     if (mode == 'sureUpdateAct'):
     #就是依樣內部呼叫一樣的查詢，然後找到使用者要修改的編號
         respone_text = ""
-        display_act,act_id = mongodb.searchUserSayAct(LID,parameters,usersay) 
+        
+        try :
+            display_act,act_id = mongodb.searchUserSayAct(LID,parameters,usersay) 
+            print ('display_act suc')
+        else :
+            print ('display_act error')
+            
+            
         #parameters 用來判斷有吃到dialogflow分好的，沒分好就拿原本訊息 
         #另外 傳回來活動id 
         try:
