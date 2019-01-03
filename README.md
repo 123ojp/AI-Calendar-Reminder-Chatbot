@@ -1,15 +1,11 @@
-## ssh筆記
-- 怎麼測試
-  - `git push`
-  - `ssh 35.201.215.113`
-  - `git clone` or `git pull`
-  - `cd FCU_DeepPlateProject`
-  - `sudo docker-compose restart web`
-- mongo admin
-  -  映射mongo admin 到http://127.0.0.1:7777 `ssh -o "ExitOnForwardFailure yes" -NL 127.0.0.1:7777:localhost:60005 User_Name@35.201.215.113` 
-  -  連線位置:`mongodb://db:27017/`
-- mongo 
-  - 映射mongo db 到本機 `ssh -o "ExitOnForwardFailure yes" -NL 127.0.0.1:27017:localhost:27017 35.201.215.113`
-
-## dialogflow筆記
-- intent Fulfillment那邊記得要開webhook
+# 自然語言行事曆提醒機器人
+## 107-1 逢甲深碗專題
+## 課程
+- 社群網路APP開發與應用
+- 資料庫系統
+## Demo 
+- [DEMO影片](https://youtu.be/gUNS8dvcfeY)
+- LINE
+![](https://i.imgur.com/jdPEolu.png)
+## 流程
+- ![](https://i.imgur.com/7d1ytjS.png)
