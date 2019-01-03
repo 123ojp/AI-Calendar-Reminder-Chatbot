@@ -12,6 +12,7 @@ import threading,time,requests,re,datetime
 ## 主動發line
 def sendLine(user, text):
     TOKEN = "oVbjOkF5o5/nAz2dR2kUiVCldSEoPrcU+ZMUGfEM78BOkb7B6/Oww3obdTV/OelA1c7DTcHYzrnl964n1gjrTRIxhgykWRE5Frwfn7rk2Lb//Zd+dBUiVzIn51dcQD6J+uGRZ0IX4WQN47YxUMF5AAdB04t89/1O/w1cDnyilFU="
+    # 蛤資安那能吃嗎？ 反正一個小project token送你拉
     LINE_API = 'https://api.line.me/v2/bot/message/push'
     CHANNEL_SERECT ='Bearer {"'+TOKEN+'"}'
     headers = {
