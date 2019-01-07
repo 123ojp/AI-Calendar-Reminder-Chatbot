@@ -9,3 +9,7 @@
 ![](https://i.imgur.com/jdPEolu.png)
 ## 流程
 - ![](https://i.imgur.com/7d1ytjS.png)
+## Build 
+- `sudo docker-compose up -d`
+- 校正 Dialogflow
+- 更改 Line api 
